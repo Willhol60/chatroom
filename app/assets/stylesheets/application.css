@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+ @import 'bootstrap';
+
+ .container {
+    width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+    background: grey;
+    padding: 1rem;
+ }
+ 
+ .messages {
+    height: 100%;
+    overflow: scroll;
+    padding: 2rem;
+  }
