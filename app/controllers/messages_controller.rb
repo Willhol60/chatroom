@@ -1,21 +1,27 @@
+# frozen_string_literal: true
+
 class MessagesController < ApplicationController
-    def index
-        @messages = Message.all
-        @message = Message.new
+  def index
+    @messages = Message.all
+    @message = Message.new
+  end
+
+  def create
+    @message = Message.new(message_params)
+    @message.user_id = current_user.id
+
+    if @message.save
+      ActionCable.server.broadcast('ChatroomChannel', render_to_string(partial: 'message', locals: { message: @message }))
+      head :ok
+    else
+      redirect_to root_path, status: :unprocessable_entity
+      # render 'messages/index', status: :unprocessable_entity
     end
+  end
 
-    def create
-        @message = Message.new(message_params)
-        @message.user_id = current_user.id
+  private
 
-        @message.save
-        ActionCable.server.broadcast("ChatroomChannel", render_to_string(partial: "message", locals: {message: @message}))
-        head :ok
-    end
-
-    private
-
-    def message_params
-        params.require(:message).permit(:content)
-    end
+  def message_params
+    params.require(:message).permit(:content)
+  end
 end
