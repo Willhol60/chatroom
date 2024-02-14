@@ -15,7 +15,6 @@ class MessagesController < ApplicationController
       head :ok
     else
       redirect_to root_path, status: :unprocessable_entity
-      # render 'messages/index', status: :unprocessable_entity
     end
   end
 

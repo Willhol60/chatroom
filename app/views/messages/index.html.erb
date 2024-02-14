@@ -1,5 +1,5 @@
 <div class="container" data-controller="chatroom-subscription">
-    <h1 style="font-family: Arial, sans-serif;">The Chatroom</h1>
+    <h1>The Chatroom</h1>
 
     <div class="messages" data-chatroom-subscription-target="messages">
         <% @messages.each do |message| %>
@@ -8,7 +8,6 @@
     </div>
 
     <%= simple_form_for @message, html:{data: {action: "turbo:submit-end->chatroom-subscription#resetForm"}} do |f| %>
-        <%= f.input :content, label: false, placeholder: "Write your message here" %>
-        <%= f.submit "Send" %>
+        <%= f.input :content, label: false, placeholder: "Press Enter to send" %>
     <% end %>
 </div>
