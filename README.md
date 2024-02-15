@@ -6,6 +6,8 @@ This Web chat app is a prototype with just one chatroom. All users are subscribe
 * Rails 7.1.3
 * Turbo
 
+
+
 ## Installation
     git clone git@github.com:willhol60/chatroom.git
     cd chatroom
@@ -22,7 +24,6 @@ The cron scheduling for the Weekly Stats Email can be adjusted in `config/schedu
     rspec
 
 ## Future work/improvements
-* More extensive testing
 * Pagination/scrolling
 * Batching of emails to account for scale
 * Improved error handling
