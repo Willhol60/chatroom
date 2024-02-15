@@ -18,18 +18,18 @@ class ChatMailer < ApplicationMailer
 
   def email_body
     message = "#{total_messages} messages have been exchanged in the last week.\n"
-    if user.messages.any?
-      message += "#{count_since_last(@user)} since your last message on #{date_of_last(user).strftime('%e %b')}."
+    if @user.messages.any?
+      message += "#{count_since_last(@user)} since your last message on #{date_of_last(@user).strftime('%e %b')}."
     end
     message
   end
 
   def total_messages
-    Message.count { |m| m.created_at > Date.today - 7 }
+    Message.where('created_at > ?', Date.today - 7).count
   end
 
   def count_since_last
-    Message.count { |m| m.created_at > date_of_last(@user) }
+    Message.where('created_at > ?', date_of_last(@user)).count
   end
 
   def date_of_last
