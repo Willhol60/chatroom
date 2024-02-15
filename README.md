@@ -1,24 +1,28 @@
-# README
+# Chatroom
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Web chat app is a prototype with just one chatroom. All users are subscribed to this chatroom and receive messages as they're sent by other users via websockets using ActionCable (requires Redis). 
 
-Things you may want to cover:
+* Ruby 3.0.0
+* Rails 7.1.3
+* Turbo
 
-* Ruby version
+## Installation
+    git clone git@github.com:willhol60/chatroom.git
+    cd chatroom
+    bundle
+    rails db:setup
+    redis-server (install first if required)
+    rails s
 
-* System dependencies
+Navigate to `http://localhost:3000/` and create an account as prompted.
 
-* Configuration
+The cron scheduling for the Weekly Stats Email can be adjusted in `config/schedule.rb`. Then run `whenever --update-crontab` in terminal.
 
-* Database creation
+## Tests
+    rspec
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Future work/improvements
+* More extensive testing
+* Pagination/scrolling
+* Batching of emails to account for scale
+* Improved error handling
