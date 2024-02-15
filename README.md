@@ -1,6 +1,6 @@
 # Chatroom
 
-This Web chat app is a prototype with just one chatroom. All users are subscribed to this chatroom and receive messages as they're sent by other users via websockets using ActionCable (requires Redis). 
+This Web chat app is a prototype with just one chatroom. All users are subscribed to this chatroom and receive messages as they're sent by other users via websockets using ActionCable (requires Redis). A weekly email is sent to all users individually outlining their weekly message statistics.
 
 * Ruby 3.0.0
 * Rails 7.1.3
