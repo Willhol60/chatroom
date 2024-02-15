@@ -24,6 +24,5 @@ The cron scheduling for the Weekly Stats Email can be adjusted in `config/schedu
     rspec
 
 ## Future work/improvements
-* Pagination/scrolling
-* Batching of emails to account for scale
+* Pagination/scrolling on chatroom
 * Improved error handling

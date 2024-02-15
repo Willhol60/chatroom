@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     @message.user_id = current_user.id
 
     if @message.save
-      ActionCable.server.broadcast('ChatroomChannel', render_to_string(partial: 'message', locals: { message: @message }))
+      ActionCable.server.broadcast(ChatroomChannel.to_s, render_to_string(partial: 'message', locals: { message: @message }))
       head :ok
     else
       redirect_to root_path, status: :unprocessable_entity
