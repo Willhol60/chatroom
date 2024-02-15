@@ -7,8 +7,6 @@ set :output, { error: 'log/cron_error_log.log', standard: 'log/cron_log.log' }
 set :environment, 'development'
 
 every 1.minute do
-    User.all.each do |user|
-        ChatMailer.send_weekly_stats_email(user)
-    end
+    rake "send_weekly_stats_email"    
 end
 

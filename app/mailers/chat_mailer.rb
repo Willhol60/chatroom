@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ChatMailer < ApplicationMailer
-  def send_weekly_stats_email(user)
-    @user = user
+  def send_weekly_stats_email
+    @user = params[:user]
     @email_body = email_body
 
     mail(

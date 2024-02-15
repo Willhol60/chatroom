@@ -13,7 +13,7 @@ RSpec.describe ChatMailer do
 
   describe '#send_weekly_stats_email' do
     it 'sends weekly stats email to the specified user' do
-      email = ChatMailer.send_weekly_stats_email(user1).deliver
+      email = ChatMailer.with(user: user1).send_weekly_stats_email
 
       expect(email.to).to include(user1.email)
       expect(email.to).not_to include(user2.email)
