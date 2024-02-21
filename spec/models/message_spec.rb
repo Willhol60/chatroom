@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Message do
-  let(:message) { Message.create(user: user, content: 'Hey!') }
-  let(:user) { create(:user) }
+  let(:message) { create(:message) }
 
   describe 'associations' do
     it 'belongs to a statement' do

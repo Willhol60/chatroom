@@ -13,13 +13,16 @@ user1 = User.create!(email: 'user1@example.com', password: 'password', encrypted
 user2 = User.create!(email: 'user2@example.com', password: 'password', encrypted_password: 'password')
 user3 = User.create!(email: 'user3@example.com', password: 'password', encrypted_password: 'password')
 
+room1 = Room.create!(name: 'First  chat')
 # Sample messages
-Message.create(user: user1, content: "Hey!", created_at: Time.now)
-Message.create(user: user2, content: "Hi! How are you?", created_at: Time.now + 1.minute)
-Message.create(user: user3, content: "All gravy, just building a chat app. How about you?", created_at: Time.now + 2.minutes)
-Message.create(user: user1, content: "I'm alright, cooking up some dinner for my neighbour's uncle's fish.", created_at: Time.now + 3.minutes)
-Message.create(user: user2, content: "Nice! What you making?", created_at: Time.now + 4.minutes)
-Message.create(user: user3, content: "Yeah, I'm curious too.", created_at: Time.now + 5.minutes)
-Message.create(user: user1, content: "Tuna rosti.", created_at: Time.now + 6.minutes)
-Message.create(user: user2, content: "Delicious.", created_at: Time.now + 7.minutes)
-Message.create(user: user3, content: "I want some.", created_at: Time.now + 8.minutes)
+room1.messages << [
+  Message.create(user: user1, content: "Hey!", created_at: Time.now),
+  Message.create(user: user2, content: "Hi! How are you?", created_at: Time.now + 1.minute),
+  Message.create(user: user3, content: "All gravy, just building a chat app. How about you?", created_at: Time.now + 2.minutes),
+  Message.create(user: user1, content: "I'm alright, cooking up some dinner for my neighbour's uncle's fish.", created_at: Time.now + 3.minutes),
+  Message.create(user: user2, content: "Nice! What you making?", created_at: Time.now + 4.minutes),
+  Message.create(user: user3, content: "Yeah, I'm curious too.", created_at: Time.now + 5.minutes),
+  Message.create(user: user1, content: "Tuna rosti.", created_at: Time.now + 6.minutes),
+  Message.create(user: user2, content: "Delicious.", created_at: Time.now + 7.minutes),
+  Message.create(user: user3, content: "I want some.", created_at: Time.now + 8.minutes)
+]

@@ -1,0 +1,10 @@
+<h1>All chatrooms</h1>
+<% @rooms.each do |room| %>
+  <%= link_to room.name, room %>
+<% end %>
+
+<%= simple_form_for @room do |f| %>
+    <%= f.input :name, label: false, placeholder: "New room name" %>
+    <%= f.input :private, inline_label: 'Yes' %>
+    <%= f.submit %>
+<% end %>

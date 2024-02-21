@@ -1,0 +1,20 @@
+<div class="container" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @room.id %>" >
+    <h1><%= @room.name %></h1>
+
+    <% if @room.private %>
+        <%= simple_form_for [@room, @room_membership], html:{data: {action: "turbo:submit-end->chatroom-subscription#resetForm"}} do |f| %>
+            <%= f.input :user_id, collection: @users.pluck(:email, :id) %>
+            <%= f.submit %>
+        <% end %>
+    <% end %>
+
+    <div class="messages" data-chatroom-subscription-target="messages">
+        <% @room.messages.each do |message| %>
+            <%= render "messages/message", message: message %>
+        <% end %>
+    </div>
+
+    <%= simple_form_for [@room, @message], html:{data: {action: "turbo:submit-end->chatroom-subscription#resetForm"}} do |f| %>
+        <%= f.input :content, label: false, placeholder: "Press Enter to send" %>
+    <% end %>
+</div>

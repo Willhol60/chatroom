@@ -2,23 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Messages' do # rubocop:disable Metrics/BlockLength
+RSpec.describe 'Messages' do
   let(:user) { create(:user) }
+  let(:room) { create(:room) }
+
   before { sign_in user }
 
-  describe 'GET messages/index at root path' do
-    it 'returns http success' do
-      get '/'
-
-      expect(response.status).to eq(200)
-      expect(response.body).to include('Chatroom')
-    end
-  end
-
   describe 'POST /messages' do
-    let(:post_request) { post '/messages', params: params }
+    let(:post_request) { post "/rooms/#{room.id}/messages", params: params }
 
-    context 'when provid ed with no content' do
+    context 'when provided with no content' do
       let(:params) { { message: { content: nil } } }
 
       it 'does not create a message' do

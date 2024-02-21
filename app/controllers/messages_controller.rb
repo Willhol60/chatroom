@@ -1,21 +1,28 @@
 # frozen_string_literal: true
 
 class MessagesController < ApplicationController
-  def index
-    @messages = Message.all
-    @message = Message.new
-  end
-
   def create
+    @room = Room.find(params[:room_id])
     @message = Message.new(message_params)
     @message.user_id = current_user.id
+    @message.room = @room
 
     if @message.save
-      ActionCable.server.broadcast(ChatroomChannel.to_s,
-                                   render_to_string(partial: 'message', locals: { message: @message }))
+      ChatroomChannel.broadcast_to(@room, render_to_string(partial: 'message', locals: { message: @message }))
       head :ok
     else
       redirect_to root_path, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    message = Message.find(params[:id])
+    message_id = message.id
+    room = Room.find(params[:room_id])
+
+    if message.destroy
+      ChatroomChannel.broadcast_to(room, "delete-#{message_id}")
+      head :ok
     end
   end
 
