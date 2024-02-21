@@ -1,9 +1,12 @@
-<div class="<%= (message.user == current_user) ? "sent" : "received"  %>-message-box">
+<div class="<%= (message.user == current_user) ? "sent" : "received"  %>-message-box" id=<%= message.id %>>
     <div class="sender">
         <%= message.user.email %>
         <%= message.created_at.strftime("%a %b %e at %l:%M %p") %>
     </div>
     <div class="message">
         <%= message.content %>
+    </div>
+    <div>
+        <%= button_to 'x', room_message_path(message.room, message), method: :delete %>
     </div>
 </div>
